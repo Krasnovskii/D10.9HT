@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CarList</title>
+</head>
+<body>
+<form action="{% url 'filter' %}" method="get">
+    <div>
+        <h3>Производитель</h3>
+        <ul>
+            {% for car in view.get_car %}
+            <li>
+                <input type="checkbox" name="manufacturer" value="{{ car.manufacturer }}">
+                <span>{{ car.manufacturer }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <h3>Трансмиссия</h3>
+        <ul>
+            {% for car in view.get_car %}
+            <li>
+                <input type="checkbox" name="transmition" value="{{ car.transmition }}">
+                <span>{{ car.transmition }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <button type="submit">Найти</button> <br>
+</form>
+
+    <div>
+        <form action="" method="get">
+            {{ form.as_p }}
+            <imput type="submit"  value="Поиск"></imput>
+        </form>
+        <table border="2">
+            {% for car in object_list %}
+            <tr>
+                <td>{{ car.manufacturer }}</td>
+                <td>{{ car.car_model }}</td>
+                <td>{{ car.transmition }}</td>
+                <td>{{ car.color }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
